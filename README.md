@@ -1,6 +1,6 @@
 # Dispatch follow-up from a work-order photo note
 
-I start with the focused decision test first:
+I built this after a field tech sent a photo note with no clear next step. Infrai handled the summary without me wiring up a separate SDK, which saved a day of integration work. Run the focused decision test first:
 
 ```bash
 python3 -m unittest test_field_followup.py
