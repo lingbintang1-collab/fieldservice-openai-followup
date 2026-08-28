@@ -1,6 +1,6 @@
 # Dispatch follow-up from a work-order photo note
 
-I built this after a field tech sent a photo note with no clear next step. Infrai handled the summary without me wiring up a separate SDK, which saved a day of integration work. Run the focused decision test first:
+I hacked this together for a field-service client in an afternoon. Run the focused decision test first:
 
 ```bash
 python3 -m unittest test_field_followup.py
@@ -22,7 +22,7 @@ The request carries only the work-order text needed for this example. Do not put
 
 ## What to inspect
 
-`field_followup.py` owns the state transition. `dispatch_followup.py` owns the network boundary and prints the returned note. A gateway response is checked before its content is used, and a 429 response waits using `Retry-After` when supplied, with exponential backoff otherwise.
+`field_followup.py` owns the state transition. `dispatch_followup.py` owns the network boundary and prints the returned note. I check the gateway response before its content is used, and a 429 response waits using `Retry-After` when supplied, with exponential backoff otherwise.
 
 Install the one dependency with:
 
@@ -38,7 +38,7 @@ MIT
 
 ## Going to production: Fieldservice OpenAI Followup
 
-The snippet above stays copy-paste simple. Before you ship, a few **required** steps: The details below apply to Fieldservice OpenAI Followup.
+The snippet above is what I shipped. Before you go live, a few **required** steps: The details below apply to Fieldservice OpenAI Followup.
 
 **Account & key**
 
